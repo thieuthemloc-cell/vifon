@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Lộc - Ăn gì cũng ngon | Thực Phẩm Việt Nam</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Montserrat & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#C8102E',      /* Rich VIFON-inspired Food Red */
+                            darkred: '#9B0B21',  /* Dark Crimson */
+                            yellow: '#FFC72C',   /* Vibrant Warm Gold */
+                            gold: '#D4AF37',     /* Royal Gold for premium line */
+                            cream: '#FFFDF6',    /* Soft warm background */
+                            grayBg: '#F8F9FA'
+                        }
+                    },
+                    fontFamily: {
+                        title: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFDF6;
+        }
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFDF6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C8102E;
+            border-radius: 4px;
+        }
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .banner-slide {
+            transition: opacity 0.7s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-darkred text-white text-xs md:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-phone-volume text-brand-yellow mr-1"></i> Hotline: <strong>1800 6868</strong> (Miễn phí)</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-truck-fast text-brand-yellow mr-1"></i> Giao hàng toàn quốc từ 24h</span>
+            </div>
+            <div class="flex items-center space-x-4 text-xs">
+                <span class="hover:text-brand-yellow cursor-pointer"><i class="fa-solid fa-store mr-1"></i> Hệ thống phân phối</span>
+                <div class="flex space-x-2 border-l border-red-700 pl-4">
+                    <button class="font-bold text-brand-yellow">VN</button>
+                    <span>|</span>
+                    <button class="hover:text-gray-300">EN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-header border-b border-yellow-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- LOGO THÊM LỘC -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full bg-brand-red border-2 border-brand-yellow flex items-center justify-center shadow-md transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-bowl-food text-brand-yellow text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-title font-extrabold text-2xl md:text-3xl tracking-tight text-brand-red leading-none">THÊM LỘC</span>
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold mt-1">Vị Yêu Thương - Từ 1963</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex items-center space-x-8 font-semibold text-sm text-gray-700">
+                    <a href="#home" class="text-brand-red hover:text-brand-red transition border-b-2 border-brand-red pb-1">Trang Chủ</a>
+                    <a href="#about" class="hover:text-brand-red transition pb-1">Giới Thiệu</a>
+                    <a href="#products" class="hover:text-brand-red transition pb-1">Sản Phẩm</a>
+                    <a href="#recipes" class="hover:text-brand-red transition pb-1">Bếp Thêm Lộc</a>
+                    <a href="#achievements" class="hover:text-brand-red transition pb-1">Thành Tựu</a>
+                    <a href="#contact" class="hover:text-brand-red transition pb-1">Liên Hệ</a>
+                </nav>
+
+                <!-- HEADER UTILITIES -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Bar -->
+                    <div class="relative hidden sm:block">
+                        <input type="text" id="searchInput" placeholder="Tìm sản phẩm (mì, phở...)" class="w-48 xl:w-64 pl-9 pr-4 py-2 text-sm rounded-full bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-red focus:bg-white transition">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+                    </div>
+
+                    <!-- Cart Icon Button -->
+                    <button id="cartBtn" class="relative p-2.5 text-gray-700 hover:text-brand-red transition rounded-full hover:bg-red-50">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-red text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Toggle Button -->
+                    <button id="mobileMenuBtn" class="lg:hidden p-2 text-gray-700 hover:text-brand-red focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU OVERLAY -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <div class="relative my-2">
+                <input type="text" placeholder="Tìm kiếm sản phẩm..." class="w-full pl-9 pr-4 py-2 text-sm rounded-full bg-gray-100 border border-gray-200">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+            </div>
+            <a href="#home" class="block py-2 text-brand-red font-bold">Trang Chủ</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Giới Thiệu</a>
+            <a href="#products" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Sản Phẩm</a>
+            <a href="#recipes" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Bếp Thêm Lộc</a>
+            <a href="#achievements" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Thành Tựu</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Liên Hệ</a>
+        </div>
+    </header>
+
+    <!-- HERO CAROUSEL / BANNER -->
+    <section id="home" class="relative bg-gradient-to-r from-brand-red via-brand-darkred to-red-900 text-white overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FFC72C_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[420px]">
+                
+                <!-- Slide Content -->
+                <div id="bannerText" class="space-y-6">
+                    <span class="inline-block bg-brand-yellow text-brand-darkred font-extrabold text-xs md:text-sm px-4 py-1.5 rounded-full uppercase tracking-wider shadow">
+                        Thương Hiệu Thực Phẩm Quốc Dân
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-title leading-tight">
+                        THÊM LỘC - <br>
+                        <span class="text-brand-yellow">THÊM VỊ YÊU THƯƠNG</span>
+                    </h1>
+                    <p class="text-red-100 text-sm md:text-base max-w-lg leading-relaxed">
+                        Với hơn 60 năm gắn bó cùng gian bếp gia đình Việt, Thêm Lộc cam kết mang đến những bữa ăn đậm đà vị chuẩn truyền thống, an toàn và tiện lợi cho mọi nhà.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#products" class="bg-brand-yellow text-brand-darkred font-bold px-7 py-3.5 rounded-full shadow-lg hover:bg-yellow-300 transform hover:-translate-y-0.5 transition flex items-center space-x-2">
+                            <span>Khám Phá Sản Phẩm</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#about" class="bg-transparent border-2 border-white text-white font-semibold px-6 py-3.5 rounded-full hover:bg-white hover:text-brand-red transition">
+                            Hành Trình Thương Hiệu
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Slide Image Showcase -->
+                <div class="relative flex justify-center items-center">
+                    <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-brand-yellow/20 absolute animate-pulse"></div>
+                    <img id="bannerImg" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80" 
+                         alt="Sản phẩm Thêm Lộc" 
+                         class="relative z-10 w-full max-w-md h-72 sm:h-96 object-cover rounded-3xl shadow-2xl border-4 border-brand-yellow/40 transform hover:scale-105 transition duration-500">
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <div class="flex justify-center items-center space-x-3 mt-8">
+                <button onclick="setSlide(0)" class="slide-dot w-8 h-2.5 rounded-full bg-brand-yellow transition"></button>
+                <button onclick="setSlide(1)" class="slide-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition"></button>
+                <button onclick="setSlide(2)" class="slide-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT STATS / FEATURES BAR -->
+    <section class="bg-white py-8 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 rounded-2xl bg-brand-cream border border-yellow-100">
+                    <i class="fa-solid fa-award text-3xl text-brand-red mb-2"></i>
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base">Top 10 Thực Phẩm</h3>
+                    <p class="text-xs text-gray-500 mt-1">Hàng Việt Nam chất lượng cao</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-cream border border-yellow-100">
+                    <i class="fa-solid fa-earth-americas text-3xl text-brand-red mb-2"></i>
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base">Xuất Khẩu 80+ Nước</h3>
+                    <p class="text-xs text-gray-500 mt-1">Chinh phục thị trường khó tính</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-cream border border-yellow-100">
+                    <i class="fa-solid fa-leaf text-3xl text-brand-red mb-2"></i>
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base">100% An Toàn VSTP</h3>
+                    <p class="text-xs text-gray-500 mt-1">Đạt chứng nhận ISO 22000 & HACCP</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-cream border border-yellow-100">
+                    <i class="fa-solid fa-heart-pulse text-3xl text-brand-red mb-2"></i>
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base">Dinh Dưỡng Vượt Trội</h3>
+                    <p class="text-xs text-gray-500 mt-1">Không phẩm màu công nghiệp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION (WITH CATEGORY FILTERING & GRID) -->
+    <section id="products" class="py-16 bg-gradient-to-b from-brand-cream to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-red font-bold text-sm tracking-widest uppercase">Danh Mục Sản Phẩm</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 font-title">HƯƠNG VỊ THÊM LỘC</h2>
+                <div class="w-20 h-1 bg-brand-yellow mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3 text-sm md:text-base">Thỏa sức lựa chọn các dòng sản phẩm chất lượng cao phù hợp cho mọi bữa ăn gia đình</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-10" id="categoryTabs">
+                <button onclick="filterProducts('all')" class="cat-btn active-cat border border-brand-red bg-brand-red text-white font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full shadow transition">
+                    Tất Cả
+                </button>
+                <button onclick="filterProducts('mi')" class="cat-btn border border-gray-300 bg-white text-gray-700 hover:border-brand-red font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full transition">
+                    Mì Ăn Liền
+                </button>
+                <button onclick="filterProducts('pho')" class="cat-btn border border-gray-300 bg-white text-gray-700 hover:border-brand-red font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full transition">
+                    Phở & Hủ Tiếu
+                </button>
+                <button onclick="filterProducts('chao')" class="cat-btn border border-gray-300 bg-white text-gray-700 hover:border-brand-red font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full transition">
+                    Cháo Dinh Dưỡng
+                </button>
+                <button onclick="filterProducts('giavi')" class="cat-btn border border-gray-300 bg-white text-gray-700 hover:border-brand-red font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full transition">
+                    Gia Vị Đậm Đà
+                </button>
+                <button onclick="filterProducts('hoanggia')" class="cat-btn border border-brand-gold bg-amber-50 text-amber-900 hover:bg-brand-gold hover:text-white font-bold text-xs md:text-sm px-5 py-2.5 rounded-full transition flex items-center gap-1">
+                    <i class="fa-solid fa-crown text-brand-gold group-hover:text-white"></i> Hoàng Gia Thêm Lộc
+                </button>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamic Products Loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & ACHIEVEMENTS SECTION -->
+    <section id="about" class="py-16 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Image Composition -->
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-yellow-100">
+                        <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80" alt="Quy trình sản xuất Thêm Lộc" class="w-full h-96 object-cover">
+                    </div>
+                    <!-- Badge Overlay -->
+                    <div class="absolute -bottom-6 -right-6 bg-brand-red text-white p-6 rounded-2xl shadow-xl hidden sm:block max-w-xs">
+                        <div class="text-3xl font-extrabold font-title text-brand-yellow">60+ Năm</div>
+                        <div class="text-xs mt-1 font-medium leading-snug">Gắn bó & lưu giữ trọn vẹn hương vị truyền thống Việt Nam.</div>
+                    </div>
+                </div>
+
+                <!-- Right Content -->
+                <div class="space-y-6">
+                    <span class="text-brand-red font-bold text-sm tracking-widest uppercase">Về Công Ty Cổ Phần Thực Phẩm Thêm Lộc</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 font-title leading-tight">
+                        HÀNH TRÌNH VƯƠN TẦM <br><span class="text-brand-red">THỰC PHẨM VIỆT</span>
+                    </h2>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                        Thành lập từ năm 1963, **Thêm Lộc** tự hào là một trong những doanh nghiệp tiên phong đặt nền móng cho ngành công nghiệp thực phẩm ăn liền tại Việt Nam. Không ngừng đổi mới công nghệ, chúng tôi biến những nguyên liệu nông sản Việt thơm ngon thành các sản phẩm chất lượng quốc tế.
+                    </p>
+
+                    <!-- Feature List -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-brand-red text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Công Nghệ Hiện Đại</h4>
+                                <p class="text-xs text-gray-500">Dây chuyền sản xuất khép kín tự động nhập khẩu từ Châu Âu.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-brand-red text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Nông Sản Việt Nguyên Bản</h4>
+                                <p class="text-xs text-gray-500">Sử dụng gạo thơm, ớt tươi, hành tỏi từ các vùng nguyên liệu đạt chuẩn.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-brand-red text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Chinh Phục Thế Giới</h4>
+                                <p class="text-xs text-gray-500">Có mặt tại các siêu thị lớn ở Mỹ, Châu Âu, Nhật Bản, Hàn Quốc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="#contact" class="inline-block bg-brand-red text-white font-bold px-8 py-3.5 rounded-full shadow-md hover:bg-brand-darkred transition">
+                            Tìm Hiểu Thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECIPES SECTION (BẾP THÊM LỘC) -->
+    <section id="recipes" class="py-16 bg-brand-cream border-t border-yellow-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-brand-red font-bold text-sm tracking-widest uppercase">Góc Trải Nghiệm</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 font-title mt-1">BẾP THÊM LỘC</h2>
+                </div>
+                <p class="text-gray-600 text-sm max-w-md mt-2 md:mt-0">
+                    Bỏ túi ngay các công thức sáng tạo biến tấu món ăn đơn giản thành tuyệt phẩm chuẩn vị nhà làm!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Recipe Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Phở Bò Trộn" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-yellow text-brand-darkred font-bold text-xs px-3 py-1 rounded-full">15 Phút</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-red transition">Phở Bò Trộn Sốt Cay Thêm Lộc</h3>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Biến tấu gói Phở Hoàng Gia Thêm Lộc thành món phở trộn bò xào áp chảo thơm lừng, lạ miệng cho ngày hè.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-brand-red">
+                            <span>Xem công thức</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Lẩu Mì Hải Sản" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-yellow text-brand-darkred font-bold text-xs px-3 py-1 rounded-full">20 Phút</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-red transition">Lẩu Mì Hải Sản Chua Cay Đậm Đà</h3>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Sử dụng gói súp Bột Canh Thêm Lộc kết hợp tôm mực tươi ngon tạo nên nồi lẩu hải sản chuẩn vị gia đình.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-brand-red">
+                            <span>Xem công thức</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1594756297462-e274da896e04?auto=format&fit=crop&w=600&q=80" alt="Cháo Thịt Bằm Nấm" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-yellow text-brand-darkred font-bold text-xs px-3 py-1 rounded-full">10 Phút</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-red transition">Cháo Yến Thịt Bằm Bổ Dưỡng</h3>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Giải pháp dinh dưỡng cực nhanh cho người lớn tuổi và trẻ nhỏ với Cháo Thêm Lộc kết hợp trứng bách thảo.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-brand-red">
+                            <span>Xem công thức</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER / PROMO BANNER -->
+    <section class="py-12 bg-brand-red text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-2xl md:text-3xl font-extrabold font-title">ĐĂNG KÝ NHẬN ƯU ĐÃI TỪ THÊM LỘC</h2>
+            <p class="text-red-100 text-sm mt-2 max-w-xl mx-auto">Nhận ngay thông báo khuyến mãi hấp dẫn và voucher mua hàng ưu đãi cho thành viên mới.</p>
+            <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận thông tin từ Thêm Lộc!');" class="mt-6 flex flex-col sm:flex-row justify-center items-center max-w-md mx-auto gap-2">
+                <input type="email" required placeholder="Nhập email của bạn..." class="w-full px-5 py-3 rounded-full text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow">
+                <button type="submit" class="w-full sm:w-auto bg-brand-yellow text-brand-darkred font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition whitespace-nowrap shadow">
+                    Đăng ký
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-4 border-brand-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center text-brand-yellow font-bold text-xl">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <span class="font-title font-extrabold text-2xl text-white">THÊM LỘC</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        CÔNG TY CỔ PHẦN THỰC PHẨM THÊM LỘC <br>
+                        Tự hào thương hiệu quốc gia Việt Nam mang đến những sản phẩm ăn liền chất lượng cao cho người tiêu dùng trong và ngoài nước.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red flex items-center justify-center transition text-white"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red flex items-center justify-center transition text-white"><i class="fa-brands fa-youtube text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red flex items-center justify-center transition text-white"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-red pl-2">Liên Kết Nhanh</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-brand-yellow transition">Trang Chủ</a></li>
+                        <li><a href="#about" class="hover:text-brand-yellow transition">Giới Thiệu Doanh Nghiệp</a></li>
+                        <li><a href="#products" class="hover:text-brand-yellow transition">Sản Phẩm Thêm Lộc</a></li>
+                        <li><a href="#recipes" class="hover:text-brand-yellow transition">Công Thức Bếp Thêm Lộc</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Tin Tức & Sự Kiện</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Tuyển Dụng Nhân Tài</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Categories -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-red pl-2">Dòng Sản Phẩm</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-brand-yellow transition">Phở Hoàng Gia Thêm Lộc</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Mì Tôm Chua Cay Thêm Lộc</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Cháo Yến Dinh Dưỡng</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Hủ Tiếu Nam Vang</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Bột Canh Đa Năng Thêm Lộc</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-red pl-2">Thông Tin Liên Hệ</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot text-brand-red mt-0.5"></i>
+                            <span>913 Trường Chinh, P. Tây Thạnh, Q. Tân Phú, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-brand-red"></i>
+                            <span>(028) 3815 3947 - Hotline: 1800 6868</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-brand-red"></i>
+                            <span>info@themloc.com.vn</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-globe text-brand-red"></i>
+                            <span>www.themloc.com.vn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+                <p>© 2026 Công Ty Cổ Phần Thực Phẩm Thêm Lộc. Tất cả quyền được bảo lưu.</p>
+                <div class="flex space-x-4 mt-3 sm:mt-0">
+                    <a href="#" class="hover:underline">Chính sách bảo mật</a>
+                    <a href="#" class="hover:underline">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transform transition-all relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-brand-red hover:text-white text-gray-600 rounded-full w-9 h-9 flex items-center justify-center transition z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="bg-gray-100 p-6 flex items-center justify-center">
+                    <img id="modalImg" src="" alt="Detail" class="max-h-64 object-contain rounded-xl">
+                </div>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold text-brand-red uppercase tracking-wider"></span>
+                        <h3 id="modalTitle" class="text-xl font-bold font-title text-gray-900 mt-1"></h3>
+                        <p id="modalWeight" class="text-xs text-gray-500 mt-1"></p>
+                        <p id="modalDesc" class="text-sm text-gray-600 mt-4 leading-relaxed"></p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">Giá bán lẻ</span>
+                            <span id="modalPrice" class="text-xl font-bold text-brand-red"></span>
+                        </div>
+                        <button id="modalAddToCartBtn" class="bg-brand-red hover:bg-brand-darkred text-white font-bold px-6 py-2.5 rounded-full shadow text-sm transition">
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR OVERLAY -->
+    <div id="cartSidebar" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6">
+            <div>
+                <div class="flex justify-between items-center border-b pb-4">
+                    <h3 class="font-title font-bold text-lg text-gray-900"><i class="fa-solid fa-cart-shopping text-brand-red mr-2"></i> Giỏ Hàng Của Bạn</h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+                <div id="cartItemsList" class="py-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                    <!-- Cart Items go here -->
+                </div>
+            </div>
+
+            <div class="border-t pt-4 space-y-4">
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Tổng cộng:</span>
+                    <span id="cartTotalPrice" class="text-brand-red">0 đ</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-brand-red text-white font-bold py-3.5 rounded-full hover:bg-brand-darkred transition shadow-lg">
+                    Tiến Hành Thanh Toán
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERACTIVITY -->
+    <script>
+        // Sample Product Database
+        const products = [
+            {
+                id: 1,
+                name: "Phở Bò Hoàng Gia Thêm Lộc",
+                category: "hoanggia",
+                categoryLabel: "Hoàng Gia Thêm Lộc",
+                price: "28.000 đ",
+                rawPrice: 28000,
+                weight: "Gói 120g - Có thịt bò thật 100%",
+                img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
+                desc: "Dòng sản phẩm cao cấp Hoàng Gia Thêm Lộc sở hữu gói thịt bò tươi hầm thật, nước dùng chuẩn hương vị truyền thống Hà Nội."
+            },
+            {
+                id: 2,
+                name: "Mì Tôm Chua Cay Thêm Lộc",
+                category: "mi",
+                categoryLabel: "Mì Ăn Liền",
+                price: "8.500 đ",
+                rawPrice: 8500,
+                weight: "Gói 75g",
+                img: "https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=600&q=80",
+                desc: "Sợi mì vàng giòn kết hợp nước súp tôm chua cay đậm đà, mang đến bữa ăn nhanh thơm ngon tràn đầy năng lượng."
+            },
+            {
+                id: 3,
+                name: "Phở Gà Ta Thêm Lộc",
+                category: "pho",
+                categoryLabel: "Phở & Hủ Tiếu",
+                price: "12.000 đ",
+                rawPrice: 12000,
+                weight: "Gói 70g",
+                img: "https://images.unsplash.com/photo-1594756297462-e274da896e04?auto=format&fit=crop&w=600&q=80",
+                desc: "Bánh phở mềm dai tự nhiên làm từ hạt gạo Việt, kết hợp nước dùng gà thanh ngọt chuẩn vị."
+            },
+            {
+                id: 4,
+                name: "Cháo Thịt Bằm Dinh Dưỡng",
+                category: "chao",
+                categoryLabel: "Cháo Dinh Dưỡng",
+                price: "10.000 đ",
+                rawPrice: 10000,
+                weight: "Gói 50g",
+                img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
+                desc: "Cháo sấy dẻo thơm nguyên hạt gạo thơm, bổ sung vitamin B và khoáng chất tốt cho sức khỏe cả gia đình."
+            },
+            {
+                id: 5,
+                name: "Bột Canh Cao Cấp Thêm Lộc",
+                category: "giavi",
+                categoryLabel: "Gia Vị Đậm Đà",
+                price: "6.000 đ",
+                rawPrice: 6000,
+                weight: "Gói 195g",
+                img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80",
+                desc: "Gia vị bột canh truyền thống với vị mặn ngọt hài hòa, bí quyết cho món canh và món ướp thêm đậm đà."
+            },
+            {
+                id: 6,
+                name: "Hủ Tiếu Nam Vang Thêm Lộc",
+                category: "pho",
+                categoryLabel: "Phở & Hủ Tiếu",
+                price: "13.500 đ",
+                rawPrice: 13500,
+                weight: "Gói 72g",
+                img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
+                desc: "Sợi hủ tiếu dai mướt quyện cùng nước súp tỏi phi thơm lừng đặc trưng kiểu Nam Vang."
+            },
+            {
+                id: 7,
+                name: "Mì Khay Trộn Hải Sản Thêm Lộc",
+                category: "mi",
+                categoryLabel: "Mì Ăn Liền",
+                price: "15.000 đ",
+                rawPrice: 15000,
+                weight: "Khay 90g",
+                img: "https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=600&q=80",
+                desc: "Thiết kế khay tiện lợi cho dân văn phòng, nước sốt sệt hải sản sốt cay mê đắm."
+            },
+            {
+                id: 8,
+                name: "Phở Bò Đặt Biệt Hoàng Gia",
+                category: "hoanggia",
+                categoryLabel: "Hoàng Gia Thêm Lộc",
+                price: "32.000 đ",
+                rawPrice: 32000,
+                weight: "Tô 130g - Có túi thịt tươi",
+                img: "https://images.unsplash.com/photo-1594756297462-e274da896e04?auto=format&fit=crop&w=600&q=80",
+                desc: "Phiên bản Tô tiện lợi cao cấp nhất của Thêm Lộc, mang trải nghiệm phở quán về tận nhà."
+            }
+        ];
+
+        let cart = [];
+
+        // Render Products
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div class="relative p-4 bg-gray-50 flex items-center justify-center overflow-hidden">
+                        <img src="${p.img}" alt="${p.name}" class="h-44 object-contain group-hover:scale-105 transition duration-300">
+                        ${p.category === 'hoanggia' ? `<span class="absolute top-3 left-3 bg-brand-gold text-white font-bold text-[10px] uppercase px-2.5 py-1 rounded-full"><i class="fa-solid fa-crown mr-1"></i> Hoàng Gia</span>` : ''}
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-semibold text-gray-400 uppercase">${p.categoryLabel}</span>
+                            <h3 class="font-bold text-gray-800 text-base mt-1 line-clamp-1 group-hover:text-brand-red transition">${p.name}</h3>
+                            <p class="text-xs text-gray-500 mt-1">${p.weight}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-brand-red">${p.price}</span>
+                            <div class="flex space-x-1">
+                                <button onclick="openModal(${p.id})" class="p-2 text-gray-500 hover:text-brand-red hover:bg-red-50 rounded-full transition" title="Xem nhanh">
+                                    <i class="fa-regular fa-eye text-base"></i>
+                                </button>
+                                <button onclick="addToCart(${p.id})" class="bg-brand-red hover:bg-brand-darkred text-white p-2 rounded-full shadow transition" title="Thêm vào giỏ">
+                                    <i class="fa-solid fa-plus text-sm w-4 h-4 flex items-center justify-center"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products
+        function filterProducts(cat) {
+            // Update active state
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-red', 'text-white', 'border-brand-red');
+                btn.classList.add('bg-white', 'text-gray-700', 'border-gray-300');
+            });
+            event.target.classList.add('bg-brand-red', 'text-white', 'border-brand-red');
+
+            if(cat === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        // Search Filter
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+            renderProducts(filtered);
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            const item = products.find(p => p.id === id);
+            if(!item) return;
+
+            document.getElementById('modalImg').src = item.img;
+            document.getElementById('modalTitle').innerText = item.name;
+            document.getElementById('modalCategory').innerText = item.categoryLabel;
+            document.getElementById('modalWeight').innerText = item.weight;
+            document.getElementById('modalDesc').innerText = item.desc;
+            document.getElementById('modalPrice').innerText = item.price;
+            
+            document.getElementById('modalAddToCartBtn').onclick = function() {
+                addToCart(item.id);
+                closeModal();
+            };
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        // Cart Functions
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existIndex = cart.findIndex(c => c.id === id);
+
+            if(existIndex > -1) {
+                cart[existIndex].qty += 1;
+            } else {
+                cart.push({...product, qty: 1});
+            }
+
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Update badge count
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').innerText = totalCount;
+
+            // Update List
+            const listContainer = document.getElementById('cartItemsList');
+            if(cart.length === 0) {
+                listContainer.innerHTML = `<p class="text-center text-gray-400 text-sm py-8">Giỏ hàng của bạn đang trống</p>`;
+            } else {
+                listContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.img}" class="w-12 h-12 object-contain bg-gray-50 rounded">
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
+                                <span class="text-xs text-brand-red font-semibold">${item.price}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-bold bg-gray-100 px-2 py-1 rounded">x${item.qty}</span>
+                            <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Total price calculation
+            const totalPrice = cart.reduce((sum, item) => sum + (item.rawPrice * item.qty), 0);
+            document.getElementById('cartTotalPrice').innerText = totalPrice.toLocaleString('vi-VN') + ' đ';
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        document.getElementById('cartBtn').addEventListener('click', toggleCart);
+
+        function checkout() {
+            if(cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            alert('Cảm ơn bạn đã đặt hàng tại Thêm Lộc! Chúng tôi sẽ liên hệ sớm nhất.');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Hero Banner Simple Slider Logic
+        const slides = [
+            {
+                title: 'THÊM LỘC - <br><span class="text-brand-yellow">THÊM VỊ YÊU THƯƠNG</span>',
+                desc: 'Với hơn 60 năm gắn bó cùng gian bếp gia đình Việt, Thêm Lộc cam kết mang đến những bữa ăn đậm đà vị chuẩn truyền thống.',
+                img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                title: 'DÒNG CAO CẤP - <br><span class="text-brand-yellow">HOÀNG GIA THÊM LỘC</span>',
+                desc: 'Trải nghiệm đỉnh cao ẩm thực gói trọn gói thịt tươi nguyên chất, khẳng định vị thế thương hiệu thực phẩm hàng đầu.',
+                img: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                title: 'CHẤT LƯỢNG - <br><span class="text-brand-yellow">VƯƠN TẦM THẾ GIỚI</span>',
+                desc: 'Sản phẩm Thêm Lộc xuất khẩu hơn 80 quốc gia, mang niềm tự hào nông sản Việt tới bạn bè quốc tế.',
+                img: 'https://images.unsplash.com/photo-1594756297462-e274da896e04?auto=format&fit=crop&w=800&q=80'
+            }
+        ];
+
+        let currentSlide = 0;
+        function setSlide(index) {
+            currentSlide = index;
+            const slide = slides[index];
+            document.querySelector('#bannerText h1').innerHTML = slide.title;
+            document.querySelector('#bannerText p').innerText = slide.desc;
+            document.getElementById('bannerImg').src = slide.img;
+
+            // Dots update
+            const dots = document.querySelectorAll('.slide-dot');
+            dots.forEach((dot, idx) => {
+                if(idx === index) {
+                    dot.className = 'slide-dot w-8 h-2.5 rounded-full bg-brand-yellow transition';
+                } else {
+                    dot.className = 'slide-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition';
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize App
+        window.onload = function() {
+            renderProducts(products);
+            // Auto slide banner
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                setSlide(currentSlide);
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
+
